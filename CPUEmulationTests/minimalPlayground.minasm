@@ -2,9 +2,9 @@
 
 ; Functions:
 ;   add:    0xf000
-;   mult:   0xf100
-;   div:    0xf200
-;   mod:    0xf300
+;   TODO: mult:   0xf100
+;   TODO: div:    0xf200
+;   TODO: mod:    0xf300
 
 ; add
 push 0 ; 0
@@ -41,7 +41,7 @@ push 3
 push 5
 push 0xf000
 push 2
-int 0xdeadface
+;int 0xdeadface
 int
 call
 ; stack should end with 8 now

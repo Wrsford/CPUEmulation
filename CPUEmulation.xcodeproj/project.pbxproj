@@ -21,6 +21,7 @@
 		FC0C50BB1F451A5E00C1BD97 /* EmuPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50BA1F451A5E00C1BD97 /* EmuPreprocessor.swift */; };
 		FC0C50BD1F451A7B00C1BD97 /* MinimalPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */; };
 		FC0C50BF1F45212A00C1BD97 /* minimalPlayground.minasm in Resources */ = {isa = PBXBuildFile; fileRef = FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */; };
+		FC0C50C11F45DF8700C1BD97 /* compilerPlayground.minasm in Resources */ = {isa = PBXBuildFile; fileRef = FC0C50C01F45DF8700C1BD97 /* compilerPlayground.minasm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		FC0C50BA1F451A5E00C1BD97 /* EmuPreprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmuPreprocessor.swift; sourceTree = "<group>"; };
 		FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimalPreprocessor.swift; sourceTree = "<group>"; };
 		FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimalPlayground.minasm; sourceTree = "<group>"; };
+		FC0C50C01F45DF8700C1BD97 /* compilerPlayground.minasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compilerPlayground.minasm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				FC0C508E1F44CF6100C1BD97 /* CPUEmulationTests.swift */,
 				FC0C50901F44CF6100C1BD97 /* Info.plist */,
 				FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */,
+				FC0C50C01F45DF8700C1BD97 /* compilerPlayground.minasm */,
 			);
 			path = CPUEmulationTests;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0C50C11F45DF8700C1BD97 /* compilerPlayground.minasm in Resources */,
 				FC0C50BF1F45212A00C1BD97 /* minimalPlayground.minasm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

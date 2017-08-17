@@ -27,6 +27,13 @@ public class MinimalAssembler: EmuAssembler {
                 }
             }
         }
+        
+        func toLine() -> String
+        {
+            var allParts: [String] = [name]
+            allParts.append(contentsOf: args)
+            return allParts.joined(separator: " ")
+        }
     }
     
     func getLines(_ code: String) -> [String]
@@ -56,8 +63,6 @@ public class MinimalAssembler: EmuAssembler {
             opCode = 0x7
         case "brk":
             opCode = 0x0
-        case "dup":
-            opCode = 0x8
         default:
             opCode = 0x0
         }

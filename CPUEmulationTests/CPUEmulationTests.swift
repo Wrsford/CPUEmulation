@@ -226,4 +226,46 @@ class CPUEmulationTests: XCTestCase {
         assert(cpu.brkFlag);
         
     }
+    
+    func testMinimalCodeCompilerPlayground() {
+        // Srry guys, dont have time for xcode project bs
+        let allCode = try! String(contentsOfFile: "/Users/wrsford/Dropbox/Development17/CPUEmulation/CPUEmulationTests/compilerPlayground.minasm");
+        
+        let preproc = MinimalPreprocessor()
+        let compiler = MinimalCompiler()
+        
+        let result = compiler.compile(preproc.preprocess(allCode))
+        
+        assert(result.characters.count > 0);
+    }
+    
+    func testMinimalCodeCompilerPlaygroundExec() {
+        // Srry guys, dont have time for xcode project bs
+        let allCode = try! String(contentsOfFile: "/Users/wrsford/Dropbox/Development17/CPUEmulation/CPUEmulationTests/compilerPlayground.minasm");
+        
+        let preproc = MinimalPreprocessor()
+        let compiler = MinimalCompiler()
+        let assembler = MinimalAssembler()
+        
+        let binary = assembler.assemble(
+            compiler.compile(
+                preproc.preprocess(allCode)
+            )
+        )
+        
+        // Make our CPU
+        let cpu = MinimalCPU()
+        
+        // load up code
+        cpu.loadBinary(binary, at: 0x0)
+        
+        // Execute
+        while (!cpu.brkFlag)
+        {
+            cpu.executeNextInstruction()
+        }
+        
+        assert(cpu.brkFlag);
+    }
+
 }

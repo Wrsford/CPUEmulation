@@ -1,0 +1,32 @@
+; Start minasm compiler playground
+int 0xdeadface
+@func swapStack ; Swaps the last 2 arguments in the stack
+    int 3 ; pop to data reg
+    int 5 ; Pop to backup reg
+    int 4 ; push data reg
+    int 6 ; push backup reg
+@end swapStack
+int 0xdeadface
+; ADD Function start
+@func add
+    ; need the following stack setup: lhs, 0, rhs
+    ; incoming stack setup: lhs, rhs
+    push 0 // Stack is now lhs, rhs, 0
+    @call swapStack // Sets stack to lhs, 0, rhs
+    sub ; result stack: rhs, (-)lhs
+    sub ; result is: (rhs + lhs)
+@end add
+int 0xdeadface
+; Now we test adding two numbers
+
+@func _main // the entrypoint
+    @call add 3 5 // Call the add function
+    int 0xdeadface
+@end _main
+; stack should end with 8 now
+
+int 0xdeadface
+@call _main
+brk
+
+; End minasm compiler playground

@@ -9,11 +9,29 @@
 import Foundation
 
 public class MinimalCPU: EmuCPU {
+    class CallStackState {
+        var programCounter: EmuInt
+        var dataReg: EmuByte
+        var backupReg: EmuByte
+        
+        init(_ cpu: MinimalCPU) {
+            programCounter = cpu.programCounter
+            dataReg = cpu.dataReg
+            backupReg = cpu.backupReg
+        }
+        
+        init(pc: EmuInt, dataReg: EmuByte, backupReg: EmuByte) {
+            programCounter = pc
+            self.dataReg = dataReg
+            self.backupReg = backupReg
+        }
+    }
     public var programCounter: EmuInt = 0
     public let ram = MinimalRAM()
     public var stack: [EmuByte] = []
-    public var callstack: [EmuByte] = []
-    public var dataReg: EmuByte = 0; // Stores a single value
+    var callstack: [CallStackState] = []
+    public var dataReg: EmuByte = 0 // Stores a single value
+    public var backupReg: EmuByte = 0 // Stores a single value
     public var brkFlag: Bool = false
     private var interruptTable = [EmuByte: (MinimalCPU) -> (Void)]()
     
@@ -48,6 +66,24 @@ public class MinimalCPU: EmuCPU {
         // Interrupt 4: push data register
         addInterrupt(0x4) { (cpu) -> (Void) in
             cpu.push(cpu.dataReg)
+        }
+        
+        // Interrupt 5: pop to backup register
+        addInterrupt(0x5) { (cpu) -> (Void) in
+            cpu.backupReg = cpu.pop()
+        }
+        
+        // Interrupt 6: push backup register
+        addInterrupt(0x6) { (cpu) -> (Void) in
+            cpu.push(cpu.backupReg)
+        }
+        
+        // Interrupt 7: print a character (pops stack)
+        addInterrupt(0x7) { (cpu) -> (Void) in
+            let charVal = cpu.pop()
+            // TODO: Handle errors
+            let strVal = String(Character(UnicodeScalar(charVal)!))
+            print(strVal, separator: "", terminator: "")
         }
         
         // Interrupt 0xDEADFACE: Debugger breakpoing
@@ -86,24 +122,19 @@ public class MinimalCPU: EmuCPU {
     public func call()
     {
         let addr = pop()
-        callstack.append(programCounter + 1)
+        let backupState = CallStackState(pc: programCounter + 1, dataReg: dataReg, backupReg: backupReg)
+        callstack.append(backupState)
         
         programCounter = addr
     }
     
     public func ret()
     {
-        let addr = callstack.popLast()!
+        let backupState = callstack.popLast()!
         
-        programCounter = addr
-    }
-    
-    public func dup()
-    {
-        // duplicate the last value on the stack
-        let lastVal = pop()
-        push(lastVal)
-        push(lastVal)
+        programCounter = backupState.programCounter
+        dataReg = backupState.dataReg
+        backupReg = backupState.backupReg
     }
     
     public func interrupt() {

@@ -14,15 +14,22 @@ public class MinimalPreprocessor: EmuPreprocessor
     
     func removeComments(_ line: String) -> String
     {
-        if (line.contains(";"))
+        var resultLine = line
+        if (resultLine.contains(";"))
         {
-            let indexOfComment = line.range(of: ";")!.lowerBound
-            let withCommentRemoved = line.substring(to: indexOfComment)
-            return withCommentRemoved.trimmingCharacters(in: .whitespaces)
+            let indexOfComment = resultLine.range(of: ";")!.lowerBound
+            let withCommentRemoved = resultLine.substring(to: indexOfComment)
+            resultLine = withCommentRemoved.trimmingCharacters(in: .whitespaces)
         }
-        else {
-            return line
+        
+        if (resultLine.contains("//"))
+        {
+            let indexOfComment = resultLine.range(of: "//")!.lowerBound
+            let withCommentRemoved = resultLine.substring(to: indexOfComment)
+            resultLine = withCommentRemoved.trimmingCharacters(in: .whitespaces)
         }
+        
+        return resultLine
     }
     
     public func preprocess(_ code: String) -> String {
