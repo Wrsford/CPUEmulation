@@ -10,6 +10,17 @@
 		FC0C508A1F44CF6100C1BD97 /* CPUEmulation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0C50801F44CF6100C1BD97 /* CPUEmulation.framework */; };
 		FC0C508F1F44CF6100C1BD97 /* CPUEmulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C508E1F44CF6100C1BD97 /* CPUEmulationTests.swift */; };
 		FC0C50911F44CF6100C1BD97 /* CPUEmulation.h in Headers */ = {isa = PBXBuildFile; fileRef = FC0C50831F44CF6100C1BD97 /* CPUEmulation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC0C50A21F44CFDE00C1BD97 /* MinimalRAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A11F44CFDE00C1BD97 /* MinimalRAM.swift */; };
+		FC0C50A61F44D48F00C1BD97 /* EmuMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A51F44D48F00C1BD97 /* EmuMemory.swift */; };
+		FC0C50A81F45069900C1BD97 /* EmuCPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A71F45069900C1BD97 /* EmuCPU.swift */; };
+		FC0C50AA1F4507AF00C1BD97 /* MinimalCPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A91F4507AF00C1BD97 /* MinimalCPU.swift */; };
+		FC0C50B11F450B3A00C1BD97 /* MinimalAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B01F450B3A00C1BD97 /* MinimalAssembler.swift */; };
+		FC0C50B31F450B4600C1BD97 /* EmuAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B21F450B4600C1BD97 /* EmuAssembler.swift */; };
+		FC0C50B61F45177D00C1BD97 /* MinimalCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B51F45177D00C1BD97 /* MinimalCompiler.swift */; };
+		FC0C50B81F45178700C1BD97 /* EmuCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B71F45178700C1BD97 /* EmuCompiler.swift */; };
+		FC0C50BB1F451A5E00C1BD97 /* EmuPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50BA1F451A5E00C1BD97 /* EmuPreprocessor.swift */; };
+		FC0C50BD1F451A7B00C1BD97 /* MinimalPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */; };
+		FC0C50BF1F45212A00C1BD97 /* minimalPlayground.minasm in Resources */ = {isa = PBXBuildFile; fileRef = FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +40,17 @@
 		FC0C50891F44CF6100C1BD97 /* CPUEmulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPUEmulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC0C508E1F44CF6100C1BD97 /* CPUEmulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUEmulationTests.swift; sourceTree = "<group>"; };
 		FC0C50901F44CF6100C1BD97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC0C50A11F44CFDE00C1BD97 /* MinimalRAM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimalRAM.swift; sourceTree = "<group>"; };
+		FC0C50A51F44D48F00C1BD97 /* EmuMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmuMemory.swift; sourceTree = "<group>"; };
+		FC0C50A71F45069900C1BD97 /* EmuCPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmuCPU.swift; sourceTree = "<group>"; };
+		FC0C50A91F4507AF00C1BD97 /* MinimalCPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimalCPU.swift; sourceTree = "<group>"; };
+		FC0C50B01F450B3A00C1BD97 /* MinimalAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimalAssembler.swift; sourceTree = "<group>"; };
+		FC0C50B21F450B4600C1BD97 /* EmuAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmuAssembler.swift; sourceTree = "<group>"; };
+		FC0C50B51F45177D00C1BD97 /* MinimalCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimalCompiler.swift; sourceTree = "<group>"; };
+		FC0C50B71F45178700C1BD97 /* EmuCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmuCompiler.swift; sourceTree = "<group>"; };
+		FC0C50BA1F451A5E00C1BD97 /* EmuPreprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmuPreprocessor.swift; sourceTree = "<group>"; };
+		FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimalPreprocessor.swift; sourceTree = "<group>"; };
+		FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimalPlayground.minasm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +93,9 @@
 		FC0C50821F44CF6100C1BD97 /* CPUEmulation */ = {
 			isa = PBXGroup;
 			children = (
+				FC0C50AB1F450ADF00C1BD97 /* Assembly */,
+				FC0C509E1F44CFAF00C1BD97 /* Hardware */,
+				FC0C509A1F44CF7600C1BD97 /* Factory */,
 				FC0C50831F44CF6100C1BD97 /* CPUEmulation.h */,
 				FC0C50841F44CF6100C1BD97 /* Info.plist */,
 			);
@@ -82,8 +107,128 @@
 			children = (
 				FC0C508E1F44CF6100C1BD97 /* CPUEmulationTests.swift */,
 				FC0C50901F44CF6100C1BD97 /* Info.plist */,
+				FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */,
 			);
 			path = CPUEmulationTests;
+			sourceTree = "<group>";
+		};
+		FC0C509A1F44CF7600C1BD97 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Factory;
+			sourceTree = "<group>";
+		};
+		FC0C509B1F44CF8300C1BD97 /* CPUs */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50A71F45069900C1BD97 /* EmuCPU.swift */,
+				FC0C509D1F44CF9800C1BD97 /* Minimal */,
+				FC0C509C1F44CF9000C1BD97 /* 6502 */,
+			);
+			name = CPUs;
+			sourceTree = "<group>";
+		};
+		FC0C509C1F44CF9000C1BD97 /* 6502 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = 6502;
+			sourceTree = "<group>";
+		};
+		FC0C509D1F44CF9800C1BD97 /* Minimal */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50A91F4507AF00C1BD97 /* MinimalCPU.swift */,
+			);
+			name = Minimal;
+			sourceTree = "<group>";
+		};
+		FC0C509E1F44CFAF00C1BD97 /* Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C509F1F44CFBC00C1BD97 /* RAM */,
+				FC0C509B1F44CF8300C1BD97 /* CPUs */,
+			);
+			name = Hardware;
+			sourceTree = "<group>";
+		};
+		FC0C509F1F44CFBC00C1BD97 /* RAM */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50A51F44D48F00C1BD97 /* EmuMemory.swift */,
+				FC0C50A01F44CFC400C1BD97 /* Minimal */,
+			);
+			name = RAM;
+			sourceTree = "<group>";
+		};
+		FC0C50A01F44CFC400C1BD97 /* Minimal */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50A11F44CFDE00C1BD97 /* MinimalRAM.swift */,
+			);
+			name = Minimal;
+			sourceTree = "<group>";
+		};
+		FC0C50AB1F450ADF00C1BD97 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50AE1F450B1B00C1BD97 /* Compiler */,
+				FC0C50AD1F450B0600C1BD97 /* Assembler */,
+				FC0C50AC1F450AF900C1BD97 /* Preprocessor */,
+			);
+			name = Assembly;
+			sourceTree = "<group>";
+		};
+		FC0C50AC1F450AF900C1BD97 /* Preprocessor */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50BA1F451A5E00C1BD97 /* EmuPreprocessor.swift */,
+				FC0C50B91F451A5000C1BD97 /* Minimal */,
+			);
+			name = Preprocessor;
+			sourceTree = "<group>";
+		};
+		FC0C50AD1F450B0600C1BD97 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50B21F450B4600C1BD97 /* EmuAssembler.swift */,
+				FC0C50AF1F450B2800C1BD97 /* Minimal */,
+			);
+			name = Assembler;
+			sourceTree = "<group>";
+		};
+		FC0C50AE1F450B1B00C1BD97 /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50B71F45178700C1BD97 /* EmuCompiler.swift */,
+				FC0C50B41F45176E00C1BD97 /* Minimal */,
+			);
+			name = Compiler;
+			sourceTree = "<group>";
+		};
+		FC0C50AF1F450B2800C1BD97 /* Minimal */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50B01F450B3A00C1BD97 /* MinimalAssembler.swift */,
+			);
+			name = Minimal;
+			sourceTree = "<group>";
+		};
+		FC0C50B41F45176E00C1BD97 /* Minimal */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50B51F45177D00C1BD97 /* MinimalCompiler.swift */,
+			);
+			name = Minimal;
+			sourceTree = "<group>";
+		};
+		FC0C50B91F451A5000C1BD97 /* Minimal */ = {
+			isa = PBXGroup;
+			children = (
+				FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */,
+			);
+			name = Minimal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +294,7 @@
 					FC0C507F1F44CF6100C1BD97 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = Z7DBFRQCV7;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					FC0C50881F44CF6100C1BD97 = {
@@ -188,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0C50BF1F45212A00C1BD97 /* minimalPlayground.minasm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +345,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0C50A81F45069900C1BD97 /* EmuCPU.swift in Sources */,
+				FC0C50B11F450B3A00C1BD97 /* MinimalAssembler.swift in Sources */,
+				FC0C50B31F450B4600C1BD97 /* EmuAssembler.swift in Sources */,
+				FC0C50B61F45177D00C1BD97 /* MinimalCompiler.swift in Sources */,
+				FC0C50A61F44D48F00C1BD97 /* EmuMemory.swift in Sources */,
+				FC0C50AA1F4507AF00C1BD97 /* MinimalCPU.swift in Sources */,
+				FC0C50BD1F451A7B00C1BD97 /* MinimalPreprocessor.swift in Sources */,
+				FC0C50BB1F451A5E00C1BD97 /* EmuPreprocessor.swift in Sources */,
+				FC0C50B81F45178700C1BD97 /* EmuCompiler.swift in Sources */,
+				FC0C50A21F44CFDE00C1BD97 /* MinimalRAM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +478,7 @@
 		FC0C50951F44CF6100C1BD97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -335,6 +493,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ninja.stafford.CPUEmulation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -342,6 +501,7 @@
 		FC0C50961F44CF6100C1BD97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -363,6 +523,7 @@
 		FC0C50981F44CF6100C1BD97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z7DBFRQCV7;
 				INFOPLIST_FILE = CPUEmulationTests/Info.plist;
@@ -376,6 +537,7 @@
 		FC0C50991F44CF6100C1BD97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z7DBFRQCV7;
 				INFOPLIST_FILE = CPUEmulationTests/Info.plist;
