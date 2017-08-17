@@ -1,6 +1,52 @@
-; This is essentially just a playground for the minimal cpu I just wrote
+; Start minasm playground
 
-; Set up the stack
+; Functions:
+;   add:    0xf000
+;   mult:   0xf100
+;   div:    0xf200
+;   mod:    0xf300
+
+; add
+push 0 ; 0
+int 0; 0, PC                            | +2 | +1
+push -24; 0, PC, ##                     | +2
+sub ; 0, PC - ##                        | +1
+int 3 ; 0 | D=PC - ##                   | +3
 
 
-; End code
+int 4 ; 0, 1, PC - ##                   | +3
+push 0xf000 ; 0, 1, PC - ##, 0xF000     | +2
+push 1 ; 0, 1 | D=PC - ##               | +2
+
+int ; args: 1, PC - ##, 0xF000          | +1
+; jump past the end of the function
+int 0; 0, PC                            | +2 | +1
+push -18; 0, PC, ##                     | +2
+sub ; 0, PC - ##                        | +1
+push 0 ; 0, PC - ##, 0                  | +2
+jlq ; should go past the ret            | +1 = (+26)
+
+; ADD Function start
+; need the following stack setup: lhs, 0, rhs
+; incoming stack setup: lhs, rhs
+int 3 ; copy rhs to data reg            | +3
+push 0 ;                                | +2
+int 4 ; stack: rhs, 0, lhs              | +3
+sub ; result stack: rhs, (-)lhs         | +1
+sub ; result is: (rhs - (-)lhs)         | +1
+ret ;                                   | +1
+
+; Now we test adding two numbers
+push 3
+push 5
+push 0xf000
+push 2
+int 0xdeadface
+int
+call
+; stack should end with 8 now
+
+
+brk
+
+; End minasm playground

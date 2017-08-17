@@ -48,13 +48,31 @@ public class MinimalAssembler: EmuAssembler {
             opCode = 0x3
         case "pop":
             opCode = 0x4
+        case "int":
+            opCode = 0x5
+        case "call":
+            opCode = 0x6
+        case "ret":
+            opCode = 0x7
+        case "brk":
+            opCode = 0x0
+        case "dup":
+            opCode = 0x8
         default:
             opCode = 0x0
         }
         
         for arg in instr.args
         {
-            args.append(Int(arg)!)
+            if (arg.contains("0x"))
+            {
+                let prefixRange = arg.range(of: "0x")!
+                args.append(Int(arg.substring(from: prefixRange.upperBound), radix: 16)!)
+            }
+            else {
+                args.append(Int(arg)!)
+            }
+            
         }
         
         args.insert(opCode, at: 0)
