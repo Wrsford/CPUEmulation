@@ -12,6 +12,6 @@ Goal: Wanted to put together a very small instruction set so I could put togethe
 
 Issues: Haven't done logical operators at this point. Haven't even put together a multiplication function yet. Floating point? I don't think so pal. 
 
-Pros: I can probably put those together with the existing instruction set, or I'll the needed instructions for it.
+Pros: I can probably put those together with the existing instruction set, or I'll add the needed instructions for it.
 
 Cons: I recall floating point math can get bloated with SISC
