@@ -31,11 +31,26 @@ public class MinimalCompiler: EmuCompiler {
         return 6 + (directive.args.count - 1) * 2
     }
     
+    func getJumpDirectiveSize(_ directive: MinimalAssembler.AssemblerInstruction) -> EmuInt {
+        // +push 0
+        // push addr
+        // +push cmpval
+        return 6 + (directive.args.count - 1) * 2 + 4
+    }
+    
     func getDirectiveSize(_ directive: MinimalAssembler.AssemblerInstruction) -> EmuInt
     {
         if (directive.name == "@call")
         {
             return getCallDirectiveSize(directive)
+        }
+        else if (directive.name == "@jump")
+        {
+            return getJumpDirectiveSize(directive)
+        }
+        else if (directive.name == "@pushfunc")
+        {
+            return 2
         }
         
         
@@ -66,11 +81,9 @@ public class MinimalCompiler: EmuCompiler {
                 for cl in compiledLine {
                     if (cl.name == "push")
                     {
-                        thisLineSize += 2
+                        thisLineSize -= 1 // one less since we already have a for a push
                     }
-                    else {
-                        thisLineSize += 1 + cl.args.count * 2 // pushing each arg = * 2
-                    }
+                    thisLineSize += 1 + cl.args.count * 2 // pushing each arg = * 2
                 }
             }
             
@@ -118,7 +131,43 @@ public class MinimalCompiler: EmuCompiler {
         return compiled;
     }
     
-    // TODO: Think this through well before going further
+    func convertCharacters(_ line: MinimalAssembler.AssemblerInstruction) -> MinimalAssembler.AssemblerInstruction {
+        let newLine = MinimalAssembler.AssemblerInstruction(line.toLine())
+        for i in 0..<newLine.args.count
+        {
+            let theArg = newLine.args[i]
+            if (theArg.hasPrefix("'") && theArg.hasSuffix("'") && theArg.characters.count == 3)
+            {
+                // It's a character
+                newLine.args[i].characters.removeLast()
+                let theChar =  newLine.args[i].characters.removeLast()
+                let strChar = String(theChar)
+                newLine.args[i] = String(strChar.utf8CString.first!)
+                
+            }
+        }
+        return newLine
+    }
+    
+    // Spaces aren't supported, sorry
+//    func convertStrings(_ line: MinimalAssembler.AssemblerInstruction) -> [MinimalAssembler.AssemblerInstruction] {
+//        var newLine = MinimalAssembler.AssemblerInstruction(line.toLine())
+//        for i in 0..<newLine.args.count
+//        {
+//            let theArg = newLine.args[i]
+//            if (theArg.hasPrefix("\"") && theArg.hasSuffix("\"") && theArg.characters.count == 3)
+//            {
+//                // It's a string
+//                newLine.args[i].characters.removeLast()
+//                let theChar =  newLine.args[i].characters.removeLast()
+//                let strChar = String(theChar)
+//                newLine.args[i] = String(strChar.utf8CString.first!)
+//                
+//            }
+//        }
+//        return newLine
+//    }
+    
     /// Evaluates all compiler directives & SHOULD return instructions without and directives left
     func evaluateCompilerDirectives(_ allLines: [MinimalAssembler.AssemblerInstruction]) -> [MinimalAssembler.AssemblerInstruction]
     {
@@ -152,7 +201,7 @@ public class MinimalCompiler: EmuCompiler {
             return allLines
         }
         
-        var skipToLine = -1
+        var skipToLine = 0
         //var didCompileDirective = false
         
         // Figure out the order to evaluated those directives (TODO)
@@ -246,6 +295,59 @@ public class MinimalCompiler: EmuCompiler {
                 break
 
             }
+            else if (directive.value.name == "@jump")
+            {
+                //continue
+                // it's a jump
+                let theTargetAddress = funcLookup[directive.value.args[0]]!
+                var finalInstr: [String] = []
+                if (directive.value.args.count > 1)
+                {
+                    for i in 1..<directive.value.args.count
+                    {
+                        finalInstr.append("push \(directive.value.args[i])")
+                    }
+                }
+                finalInstr.append("push 0")
+                finalInstr.append("push \(theTargetAddress)") // Call doesnt know that more args were passed, will assume the last pushed value is the dest
+                finalInstr.append("int 2")
+                finalInstr.append("push 0")
+                finalInstr.append("jlq")
+                
+                // Append preceeding lines
+                for i in 0..<directive.key
+                {
+                    resolved.append(allLines[i])
+                }
+                for fi in finalInstr
+                {
+                    resolved.append(MinimalAssembler.AssemblerInstruction(fi))
+                }
+                
+                skipToLine = directive.key + 1
+                break
+                
+            }
+            else if (directive.value.name == "@pushfunc")
+            {
+                let theTargetAddress = funcLookup[directive.value.args[0]]!
+                let finalInstr: [String] = [
+                    "push \(theTargetAddress)"
+                ]
+                
+                // Append preceeding lines
+                for i in 0..<directive.key
+                {
+                    resolved.append(allLines[i])
+                }
+                for fi in finalInstr
+                {
+                    resolved.append(MinimalAssembler.AssemblerInstruction(fi))
+                }
+                
+                skipToLine = directive.key + 1
+                break
+            }
             
         }
         // As we get back resolved directives, we will add them to the "resolved" array in order
@@ -272,14 +374,18 @@ public class MinimalCompiler: EmuCompiler {
     {
         let instr = MinimalAssembler.AssemblerInstruction(line)
         
-        if (instr.name != "push")
+        if (instr.name != "push" || (instr.args.count > 1))
         {
             var expandedLines = [String]()
             for arg in instr.args
             {
                 expandedLines.append("push \(arg)")
             }
-            expandedLines.append(instr.name)
+            if (instr.name != "push")
+            {
+                expandedLines.append(instr.name)
+            }
+            
             return expandedLines
         }
         else {
@@ -300,8 +406,73 @@ public class MinimalCompiler: EmuCompiler {
         
     }
     
+    func hasStrings(_ line: String) -> Bool {
+        return line.range(of: "\"") != nil
+    }
+    
+    func convertStrings(_ line: String) -> String
+    {
+        // I hate parsing string args
+        
+        // Step 1: Externalize
+        let escapedEscapeMarker = "$$$ARE__YOU_FOR$$REAL__RIGHT_NOW?$$$$$"
+        let escapedQuoteMarker = "$esc_str$"
+        
+        if (line.range(of: escapedQuoteMarker) != nil)
+        {
+            print("Detected a line with the escape marker already included. Fuck you.")
+        }
+        
+        // Escape escaped quotes :/
+        let escapedQuotes = line.replacingOccurrences(of: "\\\"", with: escapedQuoteMarker)
+        
+        // Use a regex
+        let quotedContent = escapedQuotes.capturedGroups(withRegex: "\"(.*?)\"")!
+        var resolvedString = escapedQuotes
+        for qc in quotedContent {
+            // TODO: Other escape chars (\n, \t, etc)
+            let resolvedCapture = qc.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: escapedQuoteMarker, with: "\"")
+            var charVals: [String] = []
+            // Get character values
+            for rcChar in resolvedCapture.utf8
+            {
+                charVals.append(String(Int(rcChar)))
+            }
+            charVals.append("0") // null terminator
+            // Reverse string pushing
+            charVals.reverse()
+            
+            // This should be the resolved string
+            let spacedOutString = charVals.joined(separator: " ")
+            resolvedString = resolvedString.replacingOccurrences(of: "\"\(qc)\"", with: spacedOutString)
+        }
+        
+        
+        return resolvedString
+    }
+    
+    /// Just do all the string crap
+    func handleStrings(_ allLines: [String]) -> [String]
+    {
+        var resolvedLines: [String] = []
+        
+        for line in allLines
+        {
+            if (hasStrings(line))
+            {
+                resolvedLines.append(convertStrings(line))
+            }
+            else {
+                resolvedLines.append(line)
+            }
+        }
+        
+        
+        return resolvedLines
+    }
+    
     public func compile(_ code: String) -> String {
-        let lines = backingAssembler.getLines(code)
+        let lines = handleStrings(backingAssembler.getLines(code))
         var parsedInstrs: [MinimalAssembler.AssemblerInstruction] = []
         for line in lines {
             parsedInstrs.append(MinimalAssembler.AssemblerInstruction(line))
@@ -312,15 +483,45 @@ public class MinimalCompiler: EmuCompiler {
         
         var compiledLines = [String]()
         for line in parsedDirectives {
-            afterDirectives.append(line.toLine())
-            let expandedLine = expandLine(line.toLine())
+            let convChars = convertCharacters(line)
+            afterDirectives.append(convChars.toLine())
+            
+            let expandedLine = expandLine(convChars.toLine())
             compiledLines.append(contentsOf: expandedLine)
         }
         
         //let parsedDirStr = afterDirectives.joined(separator: "\n")
         
         let resultCode = compiledLines.joined(separator:"\n")
-        print(resultCode)
+        //print(resultCode)
         return resultCode
+    }
+}
+extension String {
+    func capturedGroups(withRegex pattern: String) -> [String]? {
+        var regex: NSRegularExpression
+        do {
+            regex = try NSRegularExpression(pattern: pattern, options: [])
+        } catch {
+            return nil
+        }
+        
+        let matches = regex.matches(in: self, options: [], range: NSRange(location:0, length: self.characters.count))
+        
+        guard let match = matches.first else { return nil }
+        
+        // Note: Index 1 is 1st capture group, 2 is 2nd, ..., while index 0 is full match which we don't use
+        let lastRangeIndex = match.numberOfRanges - 1
+        guard lastRangeIndex >= 1 else { return nil }
+        
+        var results = [String]()
+        
+        for i in 1...lastRangeIndex {
+            let capturedGroupIndex = match.rangeAt(i)
+            let matchedString = (self as NSString).substring(with: capturedGroupIndex)
+            results.append(matchedString)
+        }
+        
+        return results
     }
 }

@@ -176,9 +176,9 @@
 		FC0C50AB1F450ADF00C1BD97 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				FC0C50AC1F450AF900C1BD97 /* Preprocessor */,
 				FC0C50AE1F450B1B00C1BD97 /* Compiler */,
 				FC0C50AD1F450B0600C1BD97 /* Assembler */,
-				FC0C50AC1F450AF900C1BD97 /* Preprocessor */,
 			);
 			name = Assembly;
 			sourceTree = "<group>";
@@ -571,6 +571,7 @@
 				FC0C50961F44CF6100C1BD97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC0C50971F44CF6100C1BD97 /* Build configuration list for PBXNativeTarget "CPUEmulationTests" */ = {
 			isa = XCConfigurationList;
@@ -579,6 +580,7 @@
 				FC0C50991F44CF6100C1BD97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

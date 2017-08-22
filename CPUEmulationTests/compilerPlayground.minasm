@@ -1,32 +1,317 @@
 ; Start minasm compiler playground
-int 0xdeadface
-@func swapStack ; Swaps the last 2 arguments in the stack
-    int 3 ; pop to data reg
-    int 5 ; Pop to backup reg
-    int 4 ; push data reg
-    int 6 ; push backup reg
-@end swapStack
-int 0xdeadface
-; ADD Function start
-@func add
-    ; need the following stack setup: lhs, 0, rhs
-    ; incoming stack setup: lhs, rhs
-    push 0 // Stack is now lhs, rhs, 0
-    @call swapStack // Sets stack to lhs, 0, rhs
-    sub ; result stack: rhs, (-)lhs
-    sub ; result is: (rhs + lhs)
-@end add
-int 0xdeadface
-; Now we test adding two numbers
+//int 0xdeadface
+// Setup interrupts
+@func pushPC
+    int 0
+@end pushPC
 
-@func _main // the entrypoint
-    @call add 3 5 // Call the add function
+@func popToRAM
+    int 1
+@end popToRAM
+
+@func pushRAM
+    int 2
+@end pushRAM
+
+// Callstack state fucks up data & backup reg functions
+;@func popData
+;    int 3
+;@end popData
+
+;@func pushData
+;    int 4
+;@end pushData
+
+;@func popBkup
+;    int 5
+;@end popBkup
+
+;@func pushBkup
+;    int 6
+;@end pushBkup
+
+@func printc
+    int 7
+@end printc
+
+@func printSpace
+    int 8
+@end printSpace
+
+@func newLine
+    int 9
+@end newLine
+
+@func debugger
     int 0xdeadface
-@end _main
-; stack should end with 8 now
+@end debugger
 
-int 0xdeadface
+@func swapStack ; Swaps the last 2 arguments in the stack
+    int 3
+    int 5
+    int 4
+    int 6
+@end swapStack
+
+@func add ; adds two numbers
+    push 0
+    //@call debugger
+    @call swapStack
+    //@call debugger
+    sub
+    sub
+@end add
+
+@func return
+    ret
+@end return
+
+@func retlq ; lhs <= rhs | poisons data & backup, returns regardless since functions auto-end with ret
+    @call debugger // Don't use this until the above comment is fixed
+    int 5
+    @pushfunc return
+    int 4
+    jlq
+@end retlq
+
+; TODO: mult
+@func mult // STILL A WIP
+    @call debugger
+    brk // Dont call this unfinished code
+
+; lhs, rhs
+int 3 ; lhs, rhs: data
+int 5 ; lhs: bkup, rhs: data
+int 4
+@jump retlq 0
+int 6
+@call add
+
+@end mult
+
+
+@func digit2char
+    //@call debugger
+    @call add '0'
+    //@call debugger
+@end digit2char
+
+@func printStr_mainLoop
+
+    int 3 // pop to data
+    int 4 // copy back to stack
+    @call pushPC
+    @call swapStack
+    push 0 // Null terminator
+    @call debugger
+    @jump retlq // Return if null terminated
+    int 4 // Wasn't null term, copy back to the stack
+    @call printc // Print the char
+    @jump printStr_mainLoop
+@end printStr_mainLoop
+
+@func printStr
+    @call printStr_mainLoop
+@end printStr
+
+@func helloWorld
+    @call printc 'H'
+    @call printc 'e'
+    @call printc 'l'
+    @call printc 'l'
+    @call printc 'o'
+    @call printc ','
+    @call printSpace
+    @call printc 'W'
+    @call printc 'o'
+    @call printc 'r'
+    @call printc 'l'
+    @call printc 'd'
+    @call printc '!'
+    @call newLine
+@end helloWorld
+
+@func forLoop // [[data], addressToCall, count]
+
+    int 3 // pop count to data
+    int 5 // pop address to bkup
+    int 4 // push count
+    @pushfunc return
+    @call pushRAM
+    jlq 0 // return if 0 or less
+
+    int 6 // push addr
+    call // call addr
+    int 6 // push address back onto stack for next call
+    int 4 // push count
+    sub 1
+    @jump forLoop
+@end forLoop
+
+@func strlen
+    int 4
+    @call swapStack
+    @pushfunc return
+    @call pushRAM
+    //@call debugger
+    jlq 0 // return if 0 or less
+    pop
+    int 4
+    @call add 1
+    int 3
+    @jump strlen
+@end strlen
+
+@func getHelloWorldString
+    push "Hello, World!"
+@end getHelloWorldString
+
+@func hw2
+    @call getHelloWorldString
+    @call strlen
+    int 3 // copy len to data
+    @call getHelloWorldString
+    @pushfunc printc
+    @call pushRAM
+    int 4 // push data
+    @call forLoop
+    @call newLine
+@end hw2
+
+@func str2ram // [[string], dest pointer]
+    int 3 // pop pointer to data
+    int 5 // char -> bkup
+    int 6 // put it back
+    int 4 // push it back
+
+    @call popToRAM // write char to ram
+    int 4 // push pointer back
+    @call add 1 // inc pointer
+    int 3 // pop increased pointer to data
+    int 6 // char -> stack
+    @pushfunc return
+    @call pushRAM
+
+    jlq 0 // return if null term
+
+    int 4 // push pointer + 1
+    @jump str2ram
+@end str2ram
+
+@func ramstrlen // [string pointer]
+    // bkup will contain the len
+    int 3 // ptr -> data
+    int 4 // ptr -> stack
+    @call pushRAM // char -> stack
+    int 6 // len -> stack
+    @call swapStack // [len, char]
+    @pushfunc return
+    @call pushRAM
+    jlq 0 // return if null term
+    int 4 // ptr -> stack
+    @call add 1 // ptr++
+    int 3 // ptr+1 -> data
+    @call add 1 // len ++
+    int 5 // len++ -> bkup
+    int 4 // ptr+1 -> stack
+    @jump ramstrlen
+@end ramstrlen
+
+@func ram2str_main // [start]
+    int 3 // ptr -> data
+    int 4 // ptr -> stack
+    @call pushRAM // char -> stack
+    int 4 // ptr -> stack
+    sub 1 // ptr--
+@end ram2str_main
+
+@func ram2str // [string pointer]
+    int 3 // ptr -> data
+    int 4 // ptr -> stack
+    @call ramstrlen
+    int 5 // len -> bkup
+    int 4 // ptr -> stack
+    int 6 // len -> stack
+    @call add // strlen + orig ptr
+    @pushfunc ram2str_main
+    @call pushRAM
+    int 6 // len -> stack
+    @call add 1 // inc len by one to account for copying the null term character
+    @call forLoop // read chars [end of str ptr, ram2str_main, strlen]
+    pop
+@end ram2str
+
+@func printStringPtr //[string_pointer]
+    int 3 // pop ptr to data
+    int 4 // put it back
+    @call ram2str // get the string
+    @call strlen // get len
+    int 5 // len -> bkup
+    int 4 // ptr -> stack
+    @call ram2str // string -> stack
+    @pushfunc printc
+    @call pushRAM // printc -> stack
+    int 6 // len -> stack
+    @call forLoop // [[str], printc, len]
+    pop // pop off the null term
+@end printStringPtr
+
+@func print //[[string]]
+    @call str2ram 0x8080
+
+    @call printStringPtr 0x8080
+@end print
+
+@func println
+    @call print
+    @call newLine
+@end println
+
+// Probably time for the fib
+@func fib // [count]
+    int 3 // start -> data
+    int 4 // start -> stack
+    @pushfunc return
+    @call pushRAM
+    jlq 0 // Return if count is 0
+    // GOT TIRED/BORED. LoZ BotW is too fun
+@end fib
+
+; Now we test
+@func _main // the entrypoint
+    // Push my name to prove ram works
+    @call popToRAM 'W' 0x1337
+    @call popToRAM 'i' 0x1338
+    @call popToRAM 'l' 0x1339
+    @call popToRAM 'l' 0x133A
+    @call popToRAM 0 0x133B // Null term
+
+
+    @call add 3 5 // Call the add function
+    @call digit2char // convert result to char
+    @call print "3 + 5 = " // Nice printing of the result
+    @call printc
+    @call newLine
+
+    // Slightly less old school hello world
+    @call hw2
+
+    // Super advanced printing
+    // TODO: Common escape chars
+    @call println "Pretty solid string printing now!"
+
+    // old school hello world
+    @call print "#2: "
+    @call helloWorld
+
+    // Print out ram test msg
+    @call print "RAM: "
+    @call printStringPtr 0x1337
+    @call newLine
+@end _main
+
+
 @call _main
-brk
+brk // kill exec
 
 ; End minasm compiler playground

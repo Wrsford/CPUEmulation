@@ -86,11 +86,28 @@ public class MinimalCPU: EmuCPU {
             print(strVal, separator: "", terminator: "")
         }
         
+        // Interrupt 8: print a space
+        addInterrupt(0x8) { (cpu) -> (Void) in
+            print(" ", separator: "", terminator: "")
+        }
+        
+        // Interrupt 9: print a newline
+        addInterrupt(0x9) { (cpu) -> (Void) in
+            print("\n", separator: "", terminator: "")
+        }
+        
         // Interrupt 0xDEADFACE: Debugger breakpoing
         addInterrupt(0xdeadface) { (cpu) -> (Void) in
-            print("Hit debugger");
+            if (cpu.brkFlag)
+            {
+                print("Brk")
+            }
+            
         }
     }
+    
+    
+    
     
     public func push(_ val: EmuByte) {
         stack.append(val)
@@ -124,7 +141,8 @@ public class MinimalCPU: EmuCPU {
         let addr = pop()
         let backupState = CallStackState(pc: programCounter + 1, dataReg: dataReg, backupReg: backupReg)
         callstack.append(backupState)
-        
+        dataReg = 0
+        backupReg = 0
         programCounter = addr
     }
     

@@ -1,4 +1,4 @@
-; Start minasm playground
+; Start minasm playground (no compiler directives)
 
 ; Functions:
 ;   add:    0xf000
