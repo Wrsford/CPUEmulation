@@ -36,6 +36,10 @@ public class MinimalAssembler: EmuAssembler {
         }
     }
     
+    public init() {
+        
+    }
+    
     func getLines(_ code: String) -> [String]
     {
         return code.components(separatedBy:"\n")

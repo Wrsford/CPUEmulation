@@ -268,4 +268,116 @@ class CPUEmulationTests: XCTestCase {
         assert(cpu.brkFlag);
     }
 
+    func testPrimitiveMinimalCPU() {
+        let allCode = try! String(contentsOfFile: "/Users/wrsford/Dropbox/Development17/CPUEmulation/CPUEmulationTests/compilerPlayground.minasm");
+        
+        let preproc = MinimalPreprocessor()
+        let compiler = MinimalCompiler()
+        let assembler = MinimalAssembler()
+        
+        let binary = assembler.assemble(
+            compiler.compile(
+                preproc.preprocess(allCode)
+            )
+        )
+        
+        
+        
+        let primitiveBin = UnsafeMutablePointer<Int>.allocate(capacity: binary.count)
+        var initBin = primitiveBin
+        var cntr = 0
+        var strVals: [String] = []
+        
+        for byte in binary {
+            initBin.pointee = byte
+            initBin = initBin.advanced(by: 1)
+            cntr += 1
+            
+            strVals.append(String(byte))
+        }
+        
+        print(strVals.joined(separator: ", "))
+        
+        
+        var cpu = minimal_cpu_context()
+        let cpuPtr = UnsafeMutablePointer<minimal_cpu_context>(&cpu)
+        
+        // Initialize
+        min_cpu_init(cpuPtr)
+        min_cpu_load_binary(cpuPtr, 0x0, primitiveBin, binary.count)
+        
+        
+        while (cpu.break_flag != 1)
+        {
+            min_cpu_exec_next_instr(cpuPtr)
+        }
+        
+        assert(true)
+        
+    }
+    
+    func testBuildWiiUTestProgram() {
+        let allCode = try! String(contentsOfFile: "/Users/wrsford/Dropbox/Development17/CPUEmulation/CPUEmulationTests/wiiuTest.minasm");
+        
+        let preproc = MinimalPreprocessor()
+        let compiler = MinimalCompiler()
+        let assembler = MinimalAssembler()
+        
+        let compiled = compiler.compile(
+            preproc.preprocess(allCode)
+        )
+        
+        let binary = assembler.assemble(
+            compiled
+        )
+
+        let compiledLines = assembler.getLines(compiled)
+        
+        var lines: [String] = [
+            "const long testProgram[\(binary.count)] = {"
+        ]
+        var lineNo = 0
+        var wasPush = false
+        var byteCounter = 0
+        for byte in binary {
+            
+            if (!wasPush && byte == 0x3)
+            {
+                // Push command, fill in next pass
+                wasPush = true;
+            }
+            else if (wasPush)
+            {
+                let thisLine = ("  /* " + "\(byteCounter - 1)".padding(toLength: "\(binary.count)".characters.count, withPad: " ", startingAt: 0) + ": \(compiledLines[lineNo])").padding(toLength: 26, withPad: " ", startingAt: 0) + "*/   3, \(byte),"
+                lines.append(thisLine);
+                wasPush = false;
+                lineNo += 1
+            }
+            else {
+                // Other command
+                
+                let thisLine = ("  /* " + "\(byteCounter)".padding(toLength: "\(binary.count)".characters.count, withPad: " ", startingAt: 0) + ": \(compiledLines[lineNo])").padding(toLength: 26, withPad: " ", startingAt: 0) + "*/   \(byte),"
+                lines.append(thisLine);
+                lineNo += 1
+                
+            }
+            byteCounter += 1
+        }
+        lines.append(contentsOf: [
+            "};",
+            "",
+            "long* minasm_get_test_program() {",
+            "\treturn (long*)testProgram;",
+            "}",
+            "long minasm_get_program_size() {",
+            "\treturn \(binary.count);",
+            "}"
+            ])
+        
+        let finalStr = lines.joined(separator: "\n")
+        print(finalStr)
+        try! finalStr.write(toFile: "/Users/wrsford/Dropbox/Development17/WiiU/homebrew-app-template/appcode/minasm/min_wii_asm.c", atomically: true, encoding: .utf8)
+        assert(true)
+        
+    }
 }

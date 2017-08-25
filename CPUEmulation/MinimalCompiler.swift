@@ -15,6 +15,10 @@ public class MinimalCompiler: EmuCompiler {
     private var funcLookup: [String:EmuInt] = [:]
     let compilerDirectivePrefix = "@"
     
+    public init() {
+        
+    }
+    
     func isCompilerDirective(_ strToCheck: String) -> Bool
     {
         var result = false
@@ -111,7 +115,7 @@ public class MinimalCompiler: EmuCompiler {
             "sub",
             "int 3",
             "int 4",
-            "push \(funcLookupAddress)",
+            "push 0x\(String(funcLookupAddress, radix: 16))",
             "push 1",
             "int",
             "int 0",
@@ -277,7 +281,7 @@ public class MinimalCompiler: EmuCompiler {
                         finalInstr.append("push \(directive.value.args[i])")
                     }
                 }
-                finalInstr.append("push \(theTargetAddress)") // Call doesnt know that more args were passed, will assume the last pushed value is the dest
+                finalInstr.append("push 0x\(String(theTargetAddress, radix: 16))") // Call doesnt know that more args were passed, will assume the last pushed value is the dest
                 finalInstr.append("int 2")
                 finalInstr.append("call")
                 
@@ -309,7 +313,7 @@ public class MinimalCompiler: EmuCompiler {
                     }
                 }
                 finalInstr.append("push 0")
-                finalInstr.append("push \(theTargetAddress)") // Call doesnt know that more args were passed, will assume the last pushed value is the dest
+                finalInstr.append("push 0x\(String(theTargetAddress, radix: 16))") // Call doesnt know that more args were passed, will assume the last pushed value is the dest
                 finalInstr.append("int 2")
                 finalInstr.append("push 0")
                 finalInstr.append("jlq")

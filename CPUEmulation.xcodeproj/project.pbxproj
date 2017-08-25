@@ -22,6 +22,30 @@
 		FC0C50BD1F451A7B00C1BD97 /* MinimalPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */; };
 		FC0C50BF1F45212A00C1BD97 /* minimalPlayground.minasm in Resources */ = {isa = PBXBuildFile; fileRef = FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */; };
 		FC0C50C11F45DF8700C1BD97 /* compilerPlayground.minasm in Resources */ = {isa = PBXBuildFile; fileRef = FC0C50C01F45DF8700C1BD97 /* compilerPlayground.minasm */; };
+		FC1465771F4CD97C00276435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1465761F4CD97C00276435 /* AppDelegate.swift */; };
+		FC1465791F4CD97C00276435 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1465781F4CD97C00276435 /* ViewController.swift */; };
+		FC14657C1F4CD97C00276435 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC14657A1F4CD97C00276435 /* Main.storyboard */; };
+		FC14657E1F4CD97C00276435 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC14657D1F4CD97C00276435 /* Assets.xcassets */; };
+		FC1465811F4CD97C00276435 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC14657F1F4CD97C00276435 /* LaunchScreen.storyboard */; };
+		FC14658F1F4CD99B00276435 /* iCPUEmulation.h in Headers */ = {isa = PBXBuildFile; fileRef = FC14658D1F4CD99B00276435 /* iCPUEmulation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC1465921F4CD99B00276435 /* iCPUEmulation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC14658B1F4CD99B00276435 /* iCPUEmulation.framework */; };
+		FC1465931F4CD99B00276435 /* iCPUEmulation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC14658B1F4CD99B00276435 /* iCPUEmulation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC1465981F4CD9C800276435 /* EmuPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50BA1F451A5E00C1BD97 /* EmuPreprocessor.swift */; };
+		FC1465991F4CD9C800276435 /* MinimalPreprocessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */; };
+		FC14659A1F4CD9C800276435 /* EmuCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B71F45178700C1BD97 /* EmuCompiler.swift */; };
+		FC14659B1F4CD9C800276435 /* MinimalCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B51F45177D00C1BD97 /* MinimalCompiler.swift */; };
+		FC14659C1F4CD9C800276435 /* EmuAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B21F450B4600C1BD97 /* EmuAssembler.swift */; };
+		FC14659D1F4CD9C800276435 /* MinimalAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50B01F450B3A00C1BD97 /* MinimalAssembler.swift */; };
+		FC14659E1F4CD9C800276435 /* EmuMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A51F44D48F00C1BD97 /* EmuMemory.swift */; };
+		FC14659F1F4CD9C800276435 /* MinimalRAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A11F44CFDE00C1BD97 /* MinimalRAM.swift */; };
+		FC1465A01F4CD9C800276435 /* EmuCPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A71F45069900C1BD97 /* EmuCPU.swift */; };
+		FC1465A11F4CD9C800276435 /* MinimalCPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C50A91F4507AF00C1BD97 /* MinimalCPU.swift */; };
+		FC1465A31F4CDA0800276435 /* Minasm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1465A21F4CDA0800276435 /* Minasm.swift */; };
+		FC78EDB61F4F170F00FE72D6 /* minimal_cpu.c in Sources */ = {isa = PBXBuildFile; fileRef = FC78EDB41F4F170F00FE72D6 /* minimal_cpu.c */; };
+		FC78EDB71F4F170F00FE72D6 /* minimal_cpu.h in Headers */ = {isa = PBXBuildFile; fileRef = FC78EDB51F4F170F00FE72D6 /* minimal_cpu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC78EDBC1F4F1DDD00FE72D6 /* minimal_ram.c in Sources */ = {isa = PBXBuildFile; fileRef = FC78EDBA1F4F1DDD00FE72D6 /* minimal_ram.c */; };
+		FC78EDBD1F4F1DDD00FE72D6 /* minimal_ram.h in Headers */ = {isa = PBXBuildFile; fileRef = FC78EDBB1F4F1DDD00FE72D6 /* minimal_ram.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC78EDC11F4FB04200FE72D6 /* wiiuTest.minasm in Resources */ = {isa = PBXBuildFile; fileRef = FC78EDC01F4FB04200FE72D6 /* wiiuTest.minasm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +56,28 @@
 			remoteGlobalIDString = FC0C507F1F44CF6100C1BD97;
 			remoteInfo = CPUEmulation;
 		};
+		FC1465901F4CD99B00276435 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0C50771F44CF6100C1BD97 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC14658A1F4CD99B00276435;
+			remoteInfo = iCPUEmulation;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FC1465971F4CD99B00276435 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FC1465931F4CD99B00276435 /* iCPUEmulation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FC0C50801F44CF6100C1BD97 /* CPUEmulation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPUEmulation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +98,22 @@
 		FC0C50BC1F451A7B00C1BD97 /* MinimalPreprocessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimalPreprocessor.swift; sourceTree = "<group>"; };
 		FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minimalPlayground.minasm; sourceTree = "<group>"; };
 		FC0C50C01F45DF8700C1BD97 /* compilerPlayground.minasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compilerPlayground.minasm; sourceTree = "<group>"; };
+		FC1465741F4CD97C00276435 /* Minasm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minasm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC1465761F4CD97C00276435 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FC1465781F4CD97C00276435 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FC14657B1F4CD97C00276435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FC14657D1F4CD97C00276435 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FC1465801F4CD97C00276435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FC1465821F4CD97C00276435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC14658B1F4CD99B00276435 /* iCPUEmulation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iCPUEmulation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC14658D1F4CD99B00276435 /* iCPUEmulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iCPUEmulation.h; sourceTree = "<group>"; };
+		FC14658E1F4CD99B00276435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC1465A21F4CDA0800276435 /* Minasm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minasm.swift; sourceTree = "<group>"; };
+		FC78EDB41F4F170F00FE72D6 /* minimal_cpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minimal_cpu.c; sourceTree = "<group>"; };
+		FC78EDB51F4F170F00FE72D6 /* minimal_cpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = minimal_cpu.h; sourceTree = "<group>"; };
+		FC78EDBA1F4F1DDD00FE72D6 /* minimal_ram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minimal_ram.c; sourceTree = "<group>"; };
+		FC78EDBB1F4F1DDD00FE72D6 /* minimal_ram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = minimal_ram.h; sourceTree = "<group>"; };
+		FC78EDC01F4FB04200FE72D6 /* wiiuTest.minasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wiiuTest.minasm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +132,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC1465711F4CD97C00276435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC1465921F4CD99B00276435 /* iCPUEmulation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1465871F4CD99B00276435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,6 +155,8 @@
 			children = (
 				FC0C50821F44CF6100C1BD97 /* CPUEmulation */,
 				FC0C508D1F44CF6100C1BD97 /* CPUEmulationTests */,
+				FC1465751F4CD97C00276435 /* Minasm */,
+				FC14658C1F4CD99B00276435 /* iCPUEmulation */,
 				FC0C50811F44CF6100C1BD97 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +166,8 @@
 			children = (
 				FC0C50801F44CF6100C1BD97 /* CPUEmulation.framework */,
 				FC0C50891F44CF6100C1BD97 /* CPUEmulationTests.xctest */,
+				FC1465741F4CD97C00276435 /* Minasm.app */,
+				FC14658B1F4CD99B00276435 /* iCPUEmulation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +191,7 @@
 				FC0C50901F44CF6100C1BD97 /* Info.plist */,
 				FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */,
 				FC0C50C01F45DF8700C1BD97 /* compilerPlayground.minasm */,
+				FC78EDC01F4FB04200FE72D6 /* wiiuTest.minasm */,
 			);
 			path = CPUEmulationTests;
 			sourceTree = "<group>";
@@ -143,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				FC0C50A91F4507AF00C1BD97 /* MinimalCPU.swift */,
+				FC78EDB81F4F171500FE72D6 /* C */,
 			);
 			name = Minimal;
 			sourceTree = "<group>";
@@ -168,6 +250,7 @@
 		FC0C50A01F44CFC400C1BD97 /* Minimal */ = {
 			isa = PBXGroup;
 			children = (
+				FC78EDB91F4F1DCE00FE72D6 /* C */,
 				FC0C50A11F44CFDE00C1BD97 /* MinimalRAM.swift */,
 			);
 			name = Minimal;
@@ -234,6 +317,47 @@
 			name = Minimal;
 			sourceTree = "<group>";
 		};
+		FC1465751F4CD97C00276435 /* Minasm */ = {
+			isa = PBXGroup;
+			children = (
+				FC1465761F4CD97C00276435 /* AppDelegate.swift */,
+				FC1465781F4CD97C00276435 /* ViewController.swift */,
+				FC14657A1F4CD97C00276435 /* Main.storyboard */,
+				FC14657D1F4CD97C00276435 /* Assets.xcassets */,
+				FC14657F1F4CD97C00276435 /* LaunchScreen.storyboard */,
+				FC1465821F4CD97C00276435 /* Info.plist */,
+				FC1465A21F4CDA0800276435 /* Minasm.swift */,
+			);
+			path = Minasm;
+			sourceTree = "<group>";
+		};
+		FC14658C1F4CD99B00276435 /* iCPUEmulation */ = {
+			isa = PBXGroup;
+			children = (
+				FC14658D1F4CD99B00276435 /* iCPUEmulation.h */,
+				FC14658E1F4CD99B00276435 /* Info.plist */,
+			);
+			path = iCPUEmulation;
+			sourceTree = "<group>";
+		};
+		FC78EDB81F4F171500FE72D6 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				FC78EDB51F4F170F00FE72D6 /* minimal_cpu.h */,
+				FC78EDB41F4F170F00FE72D6 /* minimal_cpu.c */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
+		FC78EDB91F4F1DCE00FE72D6 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				FC78EDBA1F4F1DDD00FE72D6 /* minimal_ram.c */,
+				FC78EDBB1F4F1DDD00FE72D6 /* minimal_ram.h */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -241,7 +365,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC78EDBD1F4F1DDD00FE72D6 /* minimal_ram.h in Headers */,
 				FC0C50911F44CF6100C1BD97 /* CPUEmulation.h in Headers */,
+				FC78EDB71F4F170F00FE72D6 /* minimal_cpu.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1465881F4CD99B00276435 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC14658F1F4CD99B00276435 /* iCPUEmulation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +418,43 @@
 			productReference = FC0C50891F44CF6100C1BD97 /* CPUEmulationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FC1465731F4CD97C00276435 /* Minasm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC1465851F4CD97C00276435 /* Build configuration list for PBXNativeTarget "Minasm" */;
+			buildPhases = (
+				FC1465701F4CD97C00276435 /* Sources */,
+				FC1465711F4CD97C00276435 /* Frameworks */,
+				FC1465721F4CD97C00276435 /* Resources */,
+				FC1465971F4CD99B00276435 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC1465911F4CD99B00276435 /* PBXTargetDependency */,
+			);
+			name = Minasm;
+			productName = Minasm;
+			productReference = FC1465741F4CD97C00276435 /* Minasm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC14658A1F4CD99B00276435 /* iCPUEmulation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC1465941F4CD99B00276435 /* Build configuration list for PBXNativeTarget "iCPUEmulation" */;
+			buildPhases = (
+				FC1465861F4CD99B00276435 /* Sources */,
+				FC1465871F4CD99B00276435 /* Frameworks */,
+				FC1465881F4CD99B00276435 /* Headers */,
+				FC1465891F4CD99B00276435 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iCPUEmulation;
+			productName = iCPUEmulation;
+			productReference = FC14658B1F4CD99B00276435 /* iCPUEmulation.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -305,6 +476,16 @@
 						DevelopmentTeam = Z7DBFRQCV7;
 						ProvisioningStyle = Automatic;
 					};
+					FC1465731F4CD97C00276435 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Z7DBFRQCV7;
+						ProvisioningStyle = Automatic;
+					};
+					FC14658A1F4CD99B00276435 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Z7DBFRQCV7;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = FC0C507A1F44CF6100C1BD97 /* Build configuration list for PBXProject "CPUEmulation" */;
@@ -313,6 +494,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = FC0C50761F44CF6100C1BD97;
 			productRefGroup = FC0C50811F44CF6100C1BD97 /* Products */;
@@ -321,6 +503,8 @@
 			targets = (
 				FC0C507F1F44CF6100C1BD97 /* CPUEmulation */,
 				FC0C50881F44CF6100C1BD97 /* CPUEmulationTests */,
+				FC1465731F4CD97C00276435 /* Minasm */,
+				FC14658A1F4CD99B00276435 /* iCPUEmulation */,
 			);
 		};
 /* End PBXProject section */
@@ -338,7 +522,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC0C50C11F45DF8700C1BD97 /* compilerPlayground.minasm in Resources */,
+				FC78EDC11F4FB04200FE72D6 /* wiiuTest.minasm in Resources */,
 				FC0C50BF1F45212A00C1BD97 /* minimalPlayground.minasm in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1465721F4CD97C00276435 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC1465811F4CD97C00276435 /* LaunchScreen.storyboard in Resources */,
+				FC14657E1F4CD97C00276435 /* Assets.xcassets in Resources */,
+				FC14657C1F4CD97C00276435 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1465891F4CD99B00276435 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +551,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC78EDBC1F4F1DDD00FE72D6 /* minimal_ram.c in Sources */,
+				FC78EDB61F4F170F00FE72D6 /* minimal_cpu.c in Sources */,
 				FC0C50A81F45069900C1BD97 /* EmuCPU.swift in Sources */,
 				FC0C50B11F450B3A00C1BD97 /* MinimalAssembler.swift in Sources */,
 				FC0C50B31F450B4600C1BD97 /* EmuAssembler.swift in Sources */,
@@ -370,6 +574,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC1465701F4CD97C00276435 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC1465A31F4CDA0800276435 /* Minasm.swift in Sources */,
+				FC1465791F4CD97C00276435 /* ViewController.swift in Sources */,
+				FC1465771F4CD97C00276435 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1465861F4CD99B00276435 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC1465981F4CD9C800276435 /* EmuPreprocessor.swift in Sources */,
+				FC1465991F4CD9C800276435 /* MinimalPreprocessor.swift in Sources */,
+				FC14659A1F4CD9C800276435 /* EmuCompiler.swift in Sources */,
+				FC14659B1F4CD9C800276435 /* MinimalCompiler.swift in Sources */,
+				FC14659C1F4CD9C800276435 /* EmuAssembler.swift in Sources */,
+				FC14659D1F4CD9C800276435 /* MinimalAssembler.swift in Sources */,
+				FC14659E1F4CD9C800276435 /* EmuMemory.swift in Sources */,
+				FC14659F1F4CD9C800276435 /* MinimalRAM.swift in Sources */,
+				FC1465A01F4CD9C800276435 /* EmuCPU.swift in Sources */,
+				FC1465A11F4CD9C800276435 /* MinimalCPU.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -378,7 +609,31 @@
 			target = FC0C507F1F44CF6100C1BD97 /* CPUEmulation */;
 			targetProxy = FC0C508B1F44CF6100C1BD97 /* PBXContainerItemProxy */;
 		};
+		FC1465911F4CD99B00276435 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC14658A1F4CD99B00276435 /* iCPUEmulation */;
+			targetProxy = FC1465901F4CD99B00276435 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FC14657A1F4CD97C00276435 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC14657B1F4CD97C00276435 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FC14657F1F4CD97C00276435 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC1465801F4CD97C00276435 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FC0C50921F44CF6100C1BD97 /* Debug */ = {
@@ -552,6 +807,90 @@
 			};
 			name = Release;
 		};
+		FC1465831F4CD97C00276435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7DBFRQCV7;
+				INFOPLIST_FILE = Minasm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.stafford.Minasm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FC1465841F4CD97C00276435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7DBFRQCV7;
+				INFOPLIST_FILE = Minasm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.stafford.Minasm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FC1465951F4CD99B00276435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Z7DBFRQCV7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = iCPUEmulation/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.stafford.iCPUEmulation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FC1465961F4CD99B00276435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Z7DBFRQCV7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = iCPUEmulation/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ninja.stafford.iCPUEmulation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -578,6 +917,24 @@
 			buildConfigurations = (
 				FC0C50981F44CF6100C1BD97 /* Debug */,
 				FC0C50991F44CF6100C1BD97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC1465851F4CD97C00276435 /* Build configuration list for PBXNativeTarget "Minasm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC1465831F4CD97C00276435 /* Debug */,
+				FC1465841F4CD97C00276435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC1465941F4CD99B00276435 /* Build configuration list for PBXNativeTarget "iCPUEmulation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC1465951F4CD99B00276435 /* Debug */,
+				FC1465961F4CD99B00276435 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

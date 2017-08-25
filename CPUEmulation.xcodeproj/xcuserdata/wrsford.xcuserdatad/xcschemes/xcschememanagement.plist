@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Minasm.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>iCPUEmulation.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>FC0C50881F44CF6100C1BD97</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC1465731F4CD97C00276435</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC14658A1F4CD99B00276435</key>
 		<dict>
 			<key>primary</key>
 			<true/>

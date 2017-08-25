@@ -12,6 +12,10 @@ public class MinimalPreprocessor: EmuPreprocessor
 {
     private let backingAssembler = MinimalAssembler()
     
+    public init() {
+        
+    }
+    
     func removeComments(_ line: String) -> String
     {
         var resultLine = line
