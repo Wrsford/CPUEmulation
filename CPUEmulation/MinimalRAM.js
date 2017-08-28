@@ -17,7 +17,7 @@ function MinimalRAM() {
     };
     
     /// Returns the localized address for a region
-    var localizedAddress(address)
+    var localizedAddress = function(address)
     {
         // Figure out offset from an aligned base & return it
         return address % REGION_SIZE;
@@ -30,8 +30,8 @@ function MinimalRAM() {
         var alignedBase = alignedRegionBase(address);
         // create region
         var newRegion = {
-            baseAddress = alignedBase,
-            data = Array.apply(null, Array(REGION_SIZE)).map(Number.prototype.valueOf, 0)
+        baseAddress: alignedBase,
+        data: Array.apply(null, Array(REGION_SIZE)).map(Number.prototype.valueOf, 0)
         };
         // add region
         self.regions.push(newRegion);
@@ -61,7 +61,7 @@ function MinimalRAM() {
         // Check if getRegion returns null
         var theRegion = getRegion(address);
         // Return false if null is returned
-        return theRegion === null;
+        return theRegion !== null;
     };
     
     /// Sets byte at address
