@@ -114,6 +114,9 @@
 		FC78EDBA1F4F1DDD00FE72D6 /* minimal_ram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minimal_ram.c; sourceTree = "<group>"; };
 		FC78EDBB1F4F1DDD00FE72D6 /* minimal_ram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = minimal_ram.h; sourceTree = "<group>"; };
 		FC78EDC01F4FB04200FE72D6 /* wiiuTest.minasm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wiiuTest.minasm; sourceTree = "<group>"; };
+		FCD5A99A1F54757200147F02 /* MinimalCPU.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = MinimalCPU.js; sourceTree = "<group>"; };
+		FCD5A99B1F54758000147F02 /* MinmalRAM.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = MinmalRAM.js; sourceTree = "<group>"; };
+		FCD5A99D1F54A53B00147F02 /* MinCPUTests.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = MinCPUTests.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +195,7 @@
 				FC0C50BE1F45212A00C1BD97 /* minimalPlayground.minasm */,
 				FC0C50C01F45DF8700C1BD97 /* compilerPlayground.minasm */,
 				FC78EDC01F4FB04200FE72D6 /* wiiuTest.minasm */,
+				FCD5A99D1F54A53B00147F02 /* MinCPUTests.js */,
 			);
 			path = CPUEmulationTests;
 			sourceTree = "<group>";
@@ -223,8 +227,9 @@
 		FC0C509D1F44CF9800C1BD97 /* Minimal */ = {
 			isa = PBXGroup;
 			children = (
-				FC0C50A91F4507AF00C1BD97 /* MinimalCPU.swift */,
+				FCD5A9991F54754A00147F02 /* JS */,
 				FC78EDB81F4F171500FE72D6 /* C */,
+				FC0C50A91F4507AF00C1BD97 /* MinimalCPU.swift */,
 			);
 			name = Minimal;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 		FC0C50A01F44CFC400C1BD97 /* Minimal */ = {
 			isa = PBXGroup;
 			children = (
+				FCD5A9981F54754200147F02 /* JS */,
 				FC78EDB91F4F1DCE00FE72D6 /* C */,
 				FC0C50A11F44CFDE00C1BD97 /* MinimalRAM.swift */,
 			);
@@ -356,6 +362,22 @@
 				FC78EDBB1F4F1DDD00FE72D6 /* minimal_ram.h */,
 			);
 			name = C;
+			sourceTree = "<group>";
+		};
+		FCD5A9981F54754200147F02 /* JS */ = {
+			isa = PBXGroup;
+			children = (
+				FCD5A99B1F54758000147F02 /* MinmalRAM.js */,
+			);
+			name = JS;
+			sourceTree = "<group>";
+		};
+		FCD5A9991F54754A00147F02 /* JS */ = {
+			isa = PBXGroup;
+			children = (
+				FCD5A99A1F54757200147F02 /* MinimalCPU.js */,
+			);
+			name = JS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

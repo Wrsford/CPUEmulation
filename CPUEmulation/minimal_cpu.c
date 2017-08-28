@@ -8,30 +8,7 @@
 
 #include "minimal_cpu.h"
 
-// Op declarations
-extern void min_cpu_push(minimal_cpu_context* cpu, long val);
-extern long min_cpu_pop(minimal_cpu_context* cpu);
-extern void min_cpu_sub(minimal_cpu_context* cpu);
-extern void min_cpu_jlq(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt(minimal_cpu_context* cpu);
-extern void min_cpu_call(minimal_cpu_context* cpu);
-extern void min_cpu_ret(minimal_cpu_context* cpu);
-extern void min_cpu_break(minimal_cpu_context* cpu);
 
-// Declare interrupt setup
-extern void min_cpu_setup_interrupts(minimal_cpu_context* cpu);
-// Declare interrupt handlers
-extern void min_cpu_interrupt_push_pc(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_pop_ram(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_push_ram(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_pop_data(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_push_data(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_pop_backup(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_push_backup(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_print_char(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_print_space(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_print_newline(minimal_cpu_context* cpu);
-extern void min_cpu_interrupt_debugger(minimal_cpu_context* cpu);
 
 // Public
 
@@ -188,7 +165,7 @@ void min_cpu_add_interrupt_handler(minimal_cpu_context* cpu, min_cpu_interrupt_h
     cpu->interrupt_handlers[cpu->interrupt_count++] = handler;
 }
 
-// Private/Internal
+// Ops
 
 
 // sub

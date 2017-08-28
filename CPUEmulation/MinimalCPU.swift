@@ -107,13 +107,13 @@ public class MinimalCPU: EmuCPU {
     }
     
     
-    
-    
-    public func push(_ val: EmuByte) {
+    public func push(_ val: EmuByte)
+    {
         stack.append(val)
     }
     
-    @discardableResult public func pop() -> EmuByte {
+    @discardableResult public func pop() -> EmuByte
+    {
         return stack.popLast()!
     }
     
@@ -155,18 +155,38 @@ public class MinimalCPU: EmuCPU {
         backupReg = backupState.backupReg
     }
     
-    public func interrupt() {
+    public func interrupt()
+    {
         let intCode = pop()
         interruptTable[intCode]!(self)
     }
     
     public func addInterrupt(_ code: EmuByte, _ callback: @escaping (MinimalCPU) -> (Void))
     {
-        interruptTable[code] = callback
+        if (!interruptTable.keys.contains(code))
+        {
+            interruptTable[code] = callback
+        }
+        else {
+            print("Attempt to add interrupt with existing code \(code) is being ignored. Use replaceInterrupt() instead.")
+        }
+    }
+    
+    public func replaceInterrupt(_ code: EmuByte, _ callback: @escaping (MinimalCPU) -> (Void))
+    {
+        if (interruptTable.keys.contains(code))
+        {
+            interruptTable[code] = callback
+        }
+        else {
+            print("Attempt to replace interrupt with non-existing code \(code) is being ignored. Use addInterrupt() instead.")
+        }
+        
     }
     
     
-    public func executeNextInstruction() {
+    public func executeNextInstruction()
+    {
         if (brkFlag)
         {
             return

@@ -23,9 +23,9 @@ typedef struct {
     void* callback;
 } min_cpu_interrupt_handler;
 
-const long MIN_CPU_STACK_MAX_SIZE = 4096;
-const long MIN_CPU_CALLSTACK_MAX_SIZE = 2048;
-const long MAX_INTERRUPT_COUNT = 50;
+#define MIN_CPU_STACK_MAX_SIZE 4096
+#define MIN_CPU_CALLSTACK_MAX_SIZE 2048
+#define MAX_INTERRUPT_COUNT 50
 typedef struct {
     long program_counter;
     long data_reg;
@@ -55,4 +55,29 @@ extern void min_cpu_init(minimal_cpu_context* cpu);
 extern void min_cpu_exec_next_instr(minimal_cpu_context* cpu);
 extern void min_cpu_load_binary(minimal_cpu_context* cpu, long address, long* binary, long bin_size);
 extern void min_cpu_add_interrupt_handler(minimal_cpu_context* cpu, min_cpu_interrupt_handler handler);
+
+// Op declarations
+extern void min_cpu_push(minimal_cpu_context* cpu, long val);
+extern long min_cpu_pop(minimal_cpu_context* cpu);
+extern void min_cpu_sub(minimal_cpu_context* cpu);
+extern void min_cpu_jlq(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt(minimal_cpu_context* cpu);
+extern void min_cpu_call(minimal_cpu_context* cpu);
+extern void min_cpu_ret(minimal_cpu_context* cpu);
+extern void min_cpu_break(minimal_cpu_context* cpu);
+
+// Declare interrupt setup
+extern void min_cpu_setup_interrupts(minimal_cpu_context* cpu);
+// Declare interrupt handlers
+extern void min_cpu_interrupt_push_pc(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_pop_ram(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_push_ram(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_pop_data(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_push_data(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_pop_backup(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_push_backup(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_print_char(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_print_space(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_print_newline(minimal_cpu_context* cpu);
+extern void min_cpu_interrupt_debugger(minimal_cpu_context* cpu);
 #endif /* minimal_cpu_h */
