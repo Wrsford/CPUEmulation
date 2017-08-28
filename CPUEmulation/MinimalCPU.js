@@ -69,14 +69,14 @@ function MinimalCPU() {
         }
     }
     self.jlq = jlq;
-
+    
     var call = function()
     {
         var addr = self.pop();
         var backupState = {
-            programCounter: self.programCounter + 1, // Auto increment so we don't loop forever
-            dataRegister: self.dataRegister,
-            backupRegister: self.backupRegister
+        programCounter: self.programCounter + 1, // Auto increment so we don't loop forever
+        dataRegister: self.dataRegister,
+        backupRegister: self.backupRegister
         };
         
         self.callstack.push(backupState);
@@ -85,7 +85,7 @@ function MinimalCPU() {
         self.programCounter = addr;
     }
     self.call = call;
-
+    
     var ret = function()
     {
         var backupState = self.callstack.pop();
@@ -95,7 +95,7 @@ function MinimalCPU() {
         
     }
     self.ret = ret;
-
+    
     var interrupt = function()
     {
         var intCode = self.pop();
@@ -103,12 +103,12 @@ function MinimalCPU() {
         theInterrupt.callback(self);
     }
     self.interrupt = interrupt;
-
+    
     var addInterrupt = function(code, callback)
     {
         self.interruptTable[code] = {
-            code = code,
-            callback = callback
+        code: code,
+        callback: callback
         };
         
     }
@@ -117,17 +117,17 @@ function MinimalCPU() {
     var replaceInterrupt = function(code, callback)
     {
         self.interruptTable[code] = {
-            code = code,
-            callback = callback
+        code: code,
+        callback: callback
         };
     }
     self.replaceInterrupt = replaceInterrupt;
     
-    var loadBinary(binary, baseAddress)
+    var loadBinary = function(binary, baseAddress)
     {
         for (var i = 0; i < binary.length; i += 1)
         {
-            self.ram[i + baseAddress] = binary[i];
+            self.ram.setByte(binary[i], i + baseAddress);
         }
     }
     self.loadBinary = loadBinary;
@@ -162,7 +162,7 @@ function MinimalCPU() {
         else if (nextInstr === 0x5)
         {
             // int
-            self.int();
+            self.interrupt();
         }
         else if (nextInstr === 0x6)
         {
@@ -192,55 +192,55 @@ function MinimalCPU() {
     {
         self.addInterrupt(0x0, function(cpu) {
                           cpu.push(cpu.programCounter);
-        });
+                          });
         
         self.addInterrupt(0x1, function(cpu) {
                           var addr = cpu.pop();
                           var val = cpu.pop();
                           cpu.ram.setByte(val, addr);
-        });
+                          });
         
         self.addInterrupt(0x2, function(cpu) {
                           var addr = cpu.pop();
-                          var val = cpu.getByte(addr);
+                          var val = cpu.ram.getByte(addr);
                           cpu.push(val);
-        });
+                          });
         
         self.addInterrupt(0x3, function(cpu) {
                           cpu.dataRegister = cpu.pop();
-        });
+                          });
         
         self.addInterrupt(0x4, function(cpu) {
                           cpu.push(cpu.dataRegister);
-        });
+                          });
         
         self.addInterrupt(0x5, function(cpu) {
                           cpu.backupRegister = cpu.pop();
-        });
+                          });
         
         self.addInterrupt(0x6, function(cpu) {
                           cpu.push(cpu.backupRegister);
-        });
+                          });
         
         self.addInterrupt(0x7, function(cpu) {
                           cpu.printCache += String.fromCharCode(cpu.pop());
-        });
+                          });
         
         self.addInterrupt(0x8, function(cpu) {
                           cpu.printCache += " ";
-        });
+                          });
         
         self.addInterrupt(0x9, function(cpu) {
                           console.log(cpu.printCache);
                           cpu.printCache = "";
-        });
+                          });
         
         self.addInterrupt(0xdeadface, function(cpu) {
                           debugger;
-        });
+                          });
         
         
     }
-    
+    setupBaseInterrupts();
     return self;
 }
